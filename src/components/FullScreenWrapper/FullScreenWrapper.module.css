@@ -1,0 +1,27 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(33, 33, 36, 1)
+}
+
+.container {
+    width: 90%;
+    background-color: rgba(255, 177, 16, 1);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+@media (min-width: 444px) {
+    .container {
+        width: 400px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 540px;
+    }
+}
