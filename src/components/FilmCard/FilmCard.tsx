@@ -1,20 +1,27 @@
 import React from 'react'
-import { FilmType } from '../../config/filmsMockData'
+import { Link } from 'react-router-dom'
+import { FilmType } from '../../redux/reducers/filmsReducer'
 import s from './FilmCard.module.css'
 
 type FilmCardPropsType = {
-  film: FilmType
+  film: FilmType,
+  onClick: (film: FilmType) => void
 }
 
 export const FilmCard = (props: FilmCardPropsType) => {
   const {
+    id,
     title,
     genres,
     posterUrl
   } = props.film
 
   return (
-    <div className={s.movie}>
+    <Link
+      className={s.movie}
+      to={`/film/${id}`}
+      onClick={() => props.onClick(props.film)}
+    >
       <div className={s.movieCoverInner}>
         <img
           src={posterUrl}
@@ -29,6 +36,6 @@ export const FilmCard = (props: FilmCardPropsType) => {
           {genres.map(genre => genre + ' ')}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
