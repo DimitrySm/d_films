@@ -1,0 +1,16 @@
+.link {
+  color: #fff;
+  font-size: 28px;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+
+.signText {
+  color: #fff;
+  font-size: 18px;
+  margin-right: 10px;
+}

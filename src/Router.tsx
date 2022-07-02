@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import {AuthPage} from './views/AuthPage/AuthPage';
 import { FilmPage } from "./views/FilmPage/FilmPage";
 import { FilmsListingPage } from "./views/FilmsListingPage/FilmsListingPage";
+import PageNotFound from "./views/PageNotFound/PageNotFound";
 
 
 export const Router = () => {
@@ -11,6 +12,7 @@ export const Router = () => {
 		{ url: "/login", component: <AuthPage/> },
 		{ url: "/films", component: <FilmsListingPage/> },
 		{ url: "/film/:id", component: <FilmPage/> },
+		{ url: "*", component: <PageNotFound/> },
 	
 ];
 
