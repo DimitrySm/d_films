@@ -41,7 +41,6 @@ export const AuthPage = () => {
             navigate('/films')
         } catch (error: any) {
             setError(error.response.data.message)
-            console.log(error.response.data.message);
         }
     }
 
