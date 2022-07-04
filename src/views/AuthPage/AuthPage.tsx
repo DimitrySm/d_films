@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik';
-import signUpValidation from '../../validations/signUpValidation';
+import { authValidation } from '../../validations/authValidation';
 import InputBlock from '../../components/InputBlock/InputBlock';
 import ErrorBlock from '../../components/ErrorBlock/ErrorBlock';
 import FullScreenWrapper from '../../components/FullScreenWrapper/FullScreenWrapper';
@@ -32,12 +32,12 @@ export const AuthPage = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+
     const onSubmitHandler = async (data: FormDataType) => {
         try {
-            const token = pathname === RouteEnums.Login ? await AuthApi.login(data) : await AuthApi.register(data)
-            setToken(token)
-            dispatch(setUser({email: data.email}))
+            const response = pathname === RouteEnums.Login ? await AuthApi.login(data) : await AuthApi.register(data)
+            setToken(response.token)
+            dispatch(setUser(response.user))
             navigate('/films')
         } catch (error: any) {
             setError(error.response.data.message)
@@ -53,10 +53,10 @@ export const AuthPage = () => {
                 <Formik
                     validateOnChange={true}
                     initialValues={formData}
-                    validationSchema={signUpValidation}
+                    validationSchema={authValidation}
                     onSubmit={onSubmitHandler}
                 >
-                    {({ values, errors, handleChange }) => (
+                    {({ values, errors, handleChange, touched }) => (
                         <Form>
                             <InputBlock
                                 label="Email"
@@ -65,7 +65,7 @@ export const AuthPage = () => {
                                 onChange={handleChange}
                                 isFullWidth={true}
                             >
-                                <ErrorBlock error={errors.email ?? null} />
+                                {touched.email ? <ErrorBlock error={errors.email ?? null} /> : <span/>}
                             </InputBlock>
                             <InputBlock
                                 label="Password"
@@ -74,7 +74,7 @@ export const AuthPage = () => {
                                 onChange={handleChange}
                                 isFullWidth={true}
                             >
-                                <ErrorBlock error={errors.password ?? null} />
+                                {touched.password ? <ErrorBlock error={errors.password ?? null} /> : <span/>}
                             </InputBlock>
                             <ErrorBlock error={error} />
                             <Button variant="dark" type="submit" className="mb-3">

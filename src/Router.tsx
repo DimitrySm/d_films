@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import {AuthPage} from './views/AuthPage/AuthPage';
 import { FilmPage } from "./views/FilmPage/FilmPage";
 import { FilmsListingPage } from "./views/FilmsListingPage/FilmsListingPage";
@@ -13,7 +12,7 @@ export const Router = () => {
 		{ url: "/films", component: <FilmsListingPage/> },
 		{ url: "/film/:id", component: <FilmPage/> },
 		{ url: "*", component: <PageNotFound/> },
-	
+		{ url: "/", component: <Navigate to="/films" /> },
 ];
 
 	return (

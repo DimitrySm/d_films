@@ -13,11 +13,13 @@ function App() {
 	let pathname: string = location.pathname
 	pathname = pathname.split("/")[1];
 
+
 	useEffect(() => {
 		(async () => {
 			try {
 				dispatch(setAuthUserTC())
 			} catch (error) {
+				console.log(error);
 			}
 		})()
 	}, [dispatch])

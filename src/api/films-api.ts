@@ -18,6 +18,11 @@ class FilmsApi {
         const response = await instance.get('films/', { params });
         return response.data;
     };
+
+    static getFilm = async (id: string): Promise<FilmType> => {
+        const response = await instance.get(`films/${id}`);
+        return response.data;
+    };
 }
 
 export default FilmsApi;

@@ -8,7 +8,7 @@ export const setAuthUserTC = () => {
         if (Cookies.get("Authorization")) {
             try {
                 const response = await UserApi.userProfile()
-                dispatch(setUser({email: response.email}))
+                dispatch(setUser(response))
             } catch (error) {
                 console.log(error);
             }

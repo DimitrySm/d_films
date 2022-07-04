@@ -2,6 +2,8 @@ import { UserActionsType, userEnum } from "../actions/types";
 
 export type UserType = {
     email: string;
+    id: number;
+    
 }
 
 type UserReducerType = {
